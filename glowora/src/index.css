@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  body {
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  /*
+   * The site's <select> controls deliberately use the mono typeface (same
+   * as prices/SKU labels elsewhere) for visual consistency. Some browsers
+   * render the native option-list popup with an OS-default font that
+   * ignores inherited font-family from the closed <select> box — setting
+   * it explicitly on both here fixes that mismatch.
+   */
+  select,
+  option {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  ::selection {
+    background-color: #EC4899;
+    color: #FFFFFF;
+  }
+  :focus-visible {
+    outline: 2px solid #EC4899;
+    outline-offset: 3px;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #FDF2F8;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #F9A8D4;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #EC4899;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-widest2 text-gold-dark;
+  }
+  .section-pad {
+    @apply px-6 md:px-10 lg:px-16;
+  }
+  .hairline {
+    @apply border-line;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-fade bg-[length:160%_160%] bg-left px-7 py-3.5 text-sm font-medium text-porcelain transition-all duration-300 hover:bg-right hover:shadow-glow active:scale-[0.97];
+  }
+  /*
+   * Note: Tailwind's @apply directive does not support the color/opacity
+   * slash syntax (e.g. border-ink/15). Any class below that needs a
+   * translucent border/text/background is written with a plain CSS
+   * rgba() value instead, alongside @apply for every other (non-opacity)
+   * utility. Visually identical output — this is a build-compatibility
+   * fix only, not a design change.
+   */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-transparent px-7 py-3.5 text-sm font-medium text-ink transition-all duration-300 hover:border-ink hover:bg-ink hover:text-porcelain active:scale-[0.97];
+    border: 1px solid rgba(31, 41, 55, 0.15); /* ink @ 15% */
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors hover:text-ink active:scale-[0.97];
+    color: rgba(31, 41, 55, 0.7); /* ink @ 70% */
+  }
+  .input-field {
+    @apply w-full rounded-lg px-4 py-3 text-sm text-ink outline-none backdrop-blur-sm transition-all duration-200 focus:border-gold focus:shadow-glow;
+    background-color: rgba(255, 255, 255, 0.8); /* white @ 80% — glass surface */
+    border: 1px solid rgba(31, 41, 55, 0.12); /* ink @ 12% */
+  }
+  .input-field::placeholder {
+    color: rgba(31, 41, 55, 0.35); /* ink @ 35% */
+  }
+  .card-surface {
+    @apply rounded-xl2 border border-line backdrop-blur-sm;
+    background-color: rgba(255, 255, 255, 0.7); /* white @ 70% */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

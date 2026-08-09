@@ -38,7 +38,7 @@ export default function Logo({ variant = 'dark', size = 'md', linkTo = '/', clas
       src={logo}
       alt="Glowora"
       className={`
-        w-auto object-contain transition-transform duration-300 hover:scale-105
+        w-auto object-contain transition-transform duration-300 hover:scale-105 mix-blend-multiply
         ${
           size === "sm"
             ? "h-10"

@@ -5,12 +5,12 @@ import Breadcrumb from '../components/shared/Breadcrumb.jsx'
 import { orders, orderTimeline } from '../lib/data.js'
 
 const tabs = [
-  { id: 'current', label: 'Current', match: (s) => s === 'In Transit' },
+  { id: 'current', label: 'Current', match: (s) => s === 'In Transit' || s === 'Processing' },
   { id: 'completed', label: 'Completed', match: (s) => s === 'Delivered' },
   { id: 'cancelled', label: 'Cancelled', match: (s) => s === 'Cancelled' },
 ]
 
-const statusTone = { 'In Transit': 'gold', Delivered: 'sand', Cancelled: 'clay' }
+const statusTone = { 'Processing': 'gold', 'In Transit': 'gold', Delivered: 'sand', Cancelled: 'clay' }
 
 export default function Orders() {
   const [tab, setTab] = useState('current')

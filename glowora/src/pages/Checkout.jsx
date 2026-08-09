@@ -45,13 +45,13 @@ export default function Checkout() {
         paymentMethod: payment,
         discount, // Pass discount to backend
         cartItems: cart.map(c => ({ 
-          product: c.productId, 
-          name: c.product.name,
-          sku: c.product.sku,
-          img: c.product.img,
-          price: c.product.price,
-          qty: c.qty 
-        })), // Send local cart state fully for dummy products
+          product: c.productId,           // dummy id like 'glw-1000' or real ObjectId
+          name: c.product?.name || '',
+          sku: c.product?.sku || '',
+          img: c.product?.img || '',
+          price: c.product?.price || 0,
+          qty: c.qty,
+        })),
       })
       
       if (data.stripeSessionUrl) {

@@ -5,14 +5,12 @@ import Navbar from './Navbar.jsx'
 import Footer from './Footer.jsx'
 import CartDrawer from './CartDrawer.jsx'
 import WishlistDrawer from './WishlistDrawer.jsx'
-import AmbientBackground from '../shared/AmbientBackground.jsx'
 
 export default function PublicLayout() {
   const location = useLocation()
 
   return (
-    <div className="flex min-h-screen flex-col bg-transparent">
-      <AmbientBackground />
+    <div className="flex min-h-screen flex-col bg-[#FFE8F0]">
       <Navbar />
       <main className="flex-1">
         {/*

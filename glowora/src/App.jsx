@@ -59,7 +59,7 @@ const AdminInventory = lazy(() => import('./pages/admin/AdminInventory.jsx'))
 const AdminCoupons = lazy(() => import('./pages/admin/AdminCoupons.jsx'))
 const AdminReviews = lazy(() => import('./pages/admin/AdminReviews.jsx'))
 const AdminSettings = lazy(() => import('./pages/admin/AdminSettings.jsx'))
-const EditProduct = lazy(() => import("./pages/admin/EditProduct.jsx"));
+const EditProduct = lazy(() => import("./pages/admin/Editproduct.jsx"));
 const AdminAppointments = lazy(() => import('./pages/admin/AdminAppointments.jsx'));
 
 export default function App() {

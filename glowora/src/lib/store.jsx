@@ -6,8 +6,14 @@ const StoreContext = createContext(null)
 
 export function StoreProvider({ children }) {
   const { user: authUser } = useAuth()
-  const [cart, setCart] = useState([])
-  const [wishlist, setWishlist] = useState([])
+  const [cart, setCart] = useState(() => {
+    const saved = localStorage.getItem('glowora_cart')
+    return saved ? JSON.parse(saved) : []
+  })
+  const [wishlist, setWishlist] = useState(() => {
+    const saved = localStorage.getItem('glowora_wishlist')
+    return saved ? JSON.parse(saved) : []
+  })
   const [dark, setDark] = useState(false)
   const [cartOpen, setCartOpen] = useState(false)
   const [wishlistOpen, setWishlistOpen] = useState(false)
@@ -19,6 +25,15 @@ export function StoreProvider({ children }) {
     email: 'radhika@lumenstudio.in',
     avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200',
   })
+
+  // Save cart and wishlist to localStorage when they change
+  useEffect(() => {
+    localStorage.setItem('glowora_cart', JSON.stringify(cart))
+  }, [cart])
+
+  useEffect(() => {
+    localStorage.setItem('glowora_wishlist', JSON.stringify(wishlist))
+  }, [wishlist])
 
   // Clear cart and wishlist when user logs out
   useEffect(() => {

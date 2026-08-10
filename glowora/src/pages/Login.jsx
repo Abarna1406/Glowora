@@ -21,7 +21,7 @@ function GoogleMark() {
 }
 
 export default function Login() {
-  const { login, loading } = useAuth()
+  const { login, logout, loading } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const redirectTo = location.state?.from?.pathname || '/dashboard'
@@ -43,7 +43,12 @@ export default function Login() {
     }
 
     try {
-      await login(form.email, form.password)
+      const user = await login(form.email, form.password)
+      if (user.role === 'Admin') {
+        logout()
+        setFormError('Please use the Admin login page to sign in.')
+        return
+      }
       navigate(redirectTo, { replace: true })
     } catch (err) {
       setFormError(err.message)

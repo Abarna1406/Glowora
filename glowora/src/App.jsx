@@ -61,12 +61,15 @@ const AdminReviews = lazy(() => import('./pages/admin/AdminReviews.jsx'))
 const AdminSettings = lazy(() => import('./pages/admin/AdminSettings.jsx'))
 const EditProduct = lazy(() => import("./pages/admin/Editproduct.jsx"));
 const AdminAppointments = lazy(() => import('./pages/admin/AdminAppointments.jsx'));
+const AdminLogin = lazy(() => import('./pages/admin/AdminLogin.jsx'))
+import AdminRoute from './components/shared/AdminRoute.jsx'
 
 export default function App() {
   return (
     <Suspense fallback={<LoadingScreen />}>
       <Toaster position="top-right" toastOptions={{ className: 'font-sans text-sm shadow-xl', duration: 4000 }} />
       <Routes>
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
@@ -148,7 +151,14 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
 
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminLayout />
+            </AdminRoute>
+          }
+        >
           <Route index element={<Dashboard />} />
           <Route path="products" element={<AdminProducts />} />
           <Route path="products/add" element={<AddProduct />} />

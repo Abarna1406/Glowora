@@ -38,11 +38,14 @@ export default function ProfileDropdown({ open, onClose }) {
               </div>
             </div>
             <div className="py-1">
-              {links.map((l) => (
-                <Link key={l.to} to={l.to} onClick={onClose} className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] text-ink/75 hover:bg-sand-light hover:text-ink">
-                  <l.icon size={15} /> {l.label}
-                </Link>
-              ))}
+              {links.map((l) => {
+                if (l.to === '/admin' && user?.role !== 'Admin') return null;
+                return (
+                  <Link key={l.to} to={l.to} onClick={onClose} className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] text-ink/75 hover:bg-sand-light hover:text-ink">
+                    <l.icon size={15} /> {l.label}
+                  </Link>
+                );
+              })}
             </div>
             <div className="border-t border-line pt-1">
               <Link to="/login" onClick={onClose} className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] text-clay hover:bg-clay/5">

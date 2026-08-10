@@ -248,10 +248,18 @@ export default function Navbar() {
               )}
             </button>
             <div className="relative">
-              <button onClick={() => setProfileOpen((v) => !v)} className="ml-1 flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink/20 text-ink font-semibold hover:border-ink hover:text-ink" aria-label="Account">
-                <User size={16} strokeWidth={2.5} />
-              </button>
-              <ProfileDropdown open={profileOpen} onClose={() => setProfileOpen(false)} />
+              {isAuthenticated ? (
+                <>
+                  <button onClick={() => setProfileOpen((v) => !v)} className="ml-1 flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink/20 text-ink font-semibold hover:border-ink hover:text-ink" aria-label="Account">
+                    <User size={16} strokeWidth={2.5} />
+                  </button>
+                  <ProfileDropdown open={profileOpen} onClose={() => setProfileOpen(false)} />
+                </>
+              ) : (
+                <Link to="/login" className="ml-1 flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink/20 text-ink font-semibold hover:border-ink hover:text-ink" aria-label="Sign In">
+                  <User size={16} strokeWidth={2.5} />
+                </Link>
+              )}
             </div>
           </div>
         </div>

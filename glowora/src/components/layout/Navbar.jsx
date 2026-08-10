@@ -32,6 +32,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  return (
     <>
       <header className={`sticky top-0 z-50 border-b border-pink-200 bg-[#FFE8F0]/95 backdrop-blur-md transition-shadow duration-300 ${scrolled ? 'shadow-card' : ''}`}>
         <div className="hidden items-center justify-between border-b border-pink-200 px-6 py-1.5 font-sans text-xs text-ink font-medium md:flex lg:px-16">
@@ -298,4 +299,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </>
+  )
 }

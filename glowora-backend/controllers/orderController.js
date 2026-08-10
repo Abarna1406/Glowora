@@ -144,18 +144,27 @@ const createOrder = asyncHandler(async (req, res) => {
       });
     }
 
+    let stripeDiscounts = [];
     if (appliedDiscount > 0) {
-      // Create a negative line item for discount or just rely on a coupon code if Stripe supports it.
-      // But Stripe checkout doesn't allow negative line items directly.
-      // Easiest is to distribute discount across items or add a one-time Stripe coupon.
-      // We will pass an empty coupon for now, or just let Stripe handle full price if discount logic is complex.
+      try {
+        const stripeCoupon = await stripe.coupons.create({
+          amount_off: appliedDiscount * 100, // Amount in paise
+          currency: 'inr',
+          duration: 'once',
+        });
+        stripeDiscounts = [{ coupon: stripeCoupon.id }];
+      } catch (couponErr) {
+        console.error('Failed to create Stripe coupon:', couponErr.message);
+        res.status(500);
+        throw new Error('Failed to apply discount in payment gateway');
+      }
     }
 
-    try {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items,
         mode: 'payment',
+        discounts: stripeDiscounts,
         success_url: `${process.env.CLIENT_URL || 'http://localhost:5173'}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.CLIENT_URL || 'http://localhost:5173'}/cart`,
         metadata: { orderId: order._id.toString() },
@@ -165,9 +174,9 @@ const createOrder = asyncHandler(async (req, res) => {
       await order.save();
       stripeSessionUrl = session.url;
     } catch (stripeErr) {
-      console.warn('Stripe checkout error (falling back to direct completion for demo):', stripeErr.message);
-      order.paymentStatus = 'paid';
-      await order.save();
+      console.error('Stripe checkout error:', stripeErr.message);
+      res.status(500);
+      throw new Error(`Payment gateway error: ${stripeErr.message}`);
     }
   }
 

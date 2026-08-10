@@ -159,7 +159,7 @@ const createOrder = asyncHandler(async (req, res) => {
         throw new Error('Failed to apply discount in payment gateway');
       }
     }
-
+    try {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items,

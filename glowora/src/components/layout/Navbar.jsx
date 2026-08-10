@@ -7,6 +7,7 @@ import { useStore } from '../../lib/store.jsx'
 import NotificationDropdown from './NotificationDropdown.jsx'
 import ProfileDropdown from './ProfileDropdown.jsx'
 import Logo from '../shared/Logo.jsx'
+import { useAuth } from '../../context/AuthContext.jsx'
 
 const navLinks = [
   { label: 'Brands', to: '/brands' },
@@ -20,6 +21,7 @@ export default function Navbar() {
   const [notifOpen, setNotifOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
   const { cartCount, wishlist, setCartOpen, dark, setDark } = useStore()
+  const { isAuthenticated } = useAuth()
   const [scrolled, setScrolled] = useState(false)
   const navigate = useNavigate()
 
@@ -32,7 +34,7 @@ export default function Navbar() {
 
   return (
     <header className={`sticky top-0 z-50 border-b border-pink-200 bg-[#FFE8F0]/95 backdrop-blur-md transition-shadow duration-300 ${scrolled ? 'shadow-card' : ''}`}>
-      <div className="hidden items-center justify-between border-b border-pink-200 px-6 py-1.5 font-mono text-[11px] text-ink font-medium md:flex lg:px-16">
+      <div className="hidden items-center justify-between border-b border-pink-200 px-6 py-1.5 font-sans text-xs text-ink font-medium md:flex lg:px-16">
         <span>Verified professional trade marketplace · GST invoicing on every order</span>
         <div className="flex items-center gap-5">
           <Link to="/about" className="hover:text-ink-soft">About</Link>
@@ -256,25 +258,34 @@ export default function Navbar() {
 
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
-            transition={{ type: 'tween', duration: 0.25 }}
-            className="fixed inset-y-0 left-0 z-[60] w-80 max-w-[85%] bg-porcelain p-6 shadow-soft"
-          >
-            <div className="flex items-center justify-between">
-              <Logo size="sm" />
-              <button onClick={() => setMobileOpen(false)} aria-label="Close menu" className="text-ink"><X size={20} strokeWidth={2.5} /></button>
-            </div>
-            <div className="mt-8 flex flex-col gap-1">
-              {[{ label: 'Categories', to: '/categories' }, { label: 'Shop', to: '/shop' }, { label: 'Salon', to: '/salons' }, { label: 'Spa', to: '/spas' }, ...navLinks].map((l) => (
-                <Link key={l.to} to={l.to} onClick={() => setMobileOpen(false)} className="border-b border-line py-3 text-sm font-bold text-ink">
-                  {l.label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileOpen(false)}
+              className="fixed inset-0 z-[55] bg-ink/40 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'tween', duration: 0.25 }}
+              className="fixed inset-y-0 left-0 z-[60] w-80 max-w-[85%] bg-white p-6 shadow-soft overflow-y-auto"
+            >
+              <div className="flex items-center justify-between">
+                <Logo size="sm" />
+                <button onClick={() => setMobileOpen(false)} aria-label="Close menu" className="text-ink"><X size={20} strokeWidth={2.5} /></button>
+              </div>
+              <div className="mt-8 flex flex-col gap-1">
+                {[{ label: 'Categories', to: '/categories' }, { label: 'Shop', to: '/shop' }, { label: 'Salon', to: '/salons' }, { label: 'Spa', to: '/spas' }, ...navLinks].map((l) => (
+                  <Link key={l.to} to={l.to} onClick={() => setMobileOpen(false)} className="border-b border-line py-3 text-sm font-bold text-ink">
+                    {l.label}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

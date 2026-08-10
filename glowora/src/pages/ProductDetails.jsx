@@ -69,14 +69,14 @@ export default function ProductDetails() {
             {product.professionalOnly && <Badge tone="gold"><ShieldCheck size={10} /> Professional Use</Badge>}
             {!product.inStock && <Badge tone="clay">Out of stock</Badge>}
           </div>
-          <p className="mt-3 font-mono text-xs uppercase tracking-widest2 text-ink/40">
+          <p className="mt-3 font-mono text-xs font-semibold uppercase tracking-widest2 text-ink/70">
             <Link to={`/brands/${product.brandId}`} className="hover:text-gold-dark">{product.brand}</Link>
           </p>
           <h1 className="mt-2 font-display text-3xl text-ink md:text-4xl">{product.name}</h1>
           <div className="mt-3"><RatingStars rating={product.rating} reviews={product.reviews} /></div>
 
           <div className="mt-6"><Price price={product.price} mrp={product.mrp} size="lg" /></div>
-          <p className="mt-1 font-mono text-xs text-ink/45">per unit · {product.unit} · MOQ {product.moq} units</p>
+          <p className="mt-1 font-sans text-sm font-semibold text-ink/70">per unit · {product.unit} · MOQ {product.moq} units</p>
 
           <p className="mt-6 max-w-md text-sm leading-relaxed text-ink/60">{product.description}</p>
 

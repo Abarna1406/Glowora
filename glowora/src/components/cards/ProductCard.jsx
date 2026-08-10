@@ -78,9 +78,9 @@ export default function ProductCard({ product, index = 0 }) {
         </div>
 
         <div className="mt-4 flex items-start justify-between gap-2">
-          <div className="min-w-0">
-            <p className="font-mono text-[10px] uppercase tracking-widest2 text-ink/40">{product.brand}</p>
-            <h3 className="mt-1 truncate font-display text-[17px] text-ink">{product.name}</h3>
+          <div className="min-w-0 flex-1">
+            <p className="font-mono text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest2 text-ink/50">{product.brand}</p>
+            <h3 className="mt-1 truncate font-sans text-sm font-medium sm:text-base md:text-[17px] text-ink">{product.name}</h3>
           </div>
         </div>
         <div className="mt-2 flex items-center justify-between">

@@ -21,7 +21,7 @@ function GoogleMark() {
 }
 
 export default function Login() {
-  const { login, logout, loading } = useAuth()
+  const { login, logout, loading, setSession } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const redirectTo = location.state?.from?.pathname || '/dashboard'
@@ -68,8 +68,7 @@ export default function Login() {
       // Mirror what AuthContext's login()/register() do, so the rest of the
       // app (ProtectedRoute, api.js interceptor) sees the user as logged in.
       const { token, user } = res.data.data
-      localStorage.setItem('bph_token', token)
-      localStorage.setItem('bph_user', JSON.stringify(user))
+      setSession(token, user)
 
       navigate(redirectTo, { replace: true })
     } catch (err) {
@@ -188,6 +187,10 @@ export default function Login() {
           <p className="mt-8 text-center text-sm text-ink/55">
             New to Glowora?{' '}
             <Link to="/register" className="font-medium text-gold-dark hover:underline">Create an account</Link>
+          </p>
+          <p className="mt-4 text-center text-sm text-ink/55">
+            Are you an Admin?{' '}
+            <Link to="/admin/login" className="font-medium text-pink-500 hover:underline">Admin Login</Link>
           </p>
         </div>
       </div>

@@ -133,6 +133,7 @@ export function AuthProvider({ children }) {
     register,
     logout,
     clearError,
+    setSession: persistSession,
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

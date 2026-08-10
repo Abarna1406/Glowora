@@ -14,6 +14,10 @@ const links = [
 
 export default function ProfileDropdown({ open, onClose }) {
   const { user } = useAuth();
+  
+  // Prevent crash if user is not logged in
+  if (!user) return null;
+
   return (
     <AnimatePresence>
       {open && (

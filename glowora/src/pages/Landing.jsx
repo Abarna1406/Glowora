@@ -137,7 +137,7 @@ export default function Landing() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
 
             {/* Promo Banner 1 */}
-            <Link to="/offers" className="group relative overflow-hidden rounded-2xl bg-ink p-8 text-porcelain shadow-xl transition-transform hover:-translate-y-1 border border-gold/20">
+            <Link to="/offers" className="group relative overflow-hidden rounded-2xl bg-ink p-8 text-porcelain shadow-xl transition-transform md:hover:-translate-y-1 border border-gold/20">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=800')] opacity-10 mix-blend-overlay bg-cover bg-center" />
               <div className="absolute -right-10 -top-10 h-40 w-40 animate-pulse rounded-full bg-gold/10 blur-3xl" />
               <div className="relative z-10 flex h-full flex-col justify-center">
@@ -149,15 +149,15 @@ export default function Landing() {
                   <span className="text-gold animate-pulse inline-block">FREE</span>
                 </h3>
                 <p className="mt-3 max-w-[200px] text-sm font-medium text-porcelain/70">On all premium skincare serums this week.</p>
-                <div className="mt-6 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-gold-dark group-hover:text-gold transition-colors">
-                  Shop Offers <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                <div className="mt-6 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-gold-dark md:group-hover:text-gold transition-colors">
+                  Shop Offers <ArrowRight size={14} className="md:group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-              <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=400" className="absolute -bottom-8 -right-8 h-48 w-48 object-cover rounded-full border-4 border-ink shadow-2xl transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-6" alt="Serum" />
+              <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=400" className="absolute -bottom-8 -right-8 h-48 w-48 object-cover rounded-full border-4 border-ink shadow-2xl transition-transform duration-700 md:group-hover:scale-110 md:group-hover:-rotate-6" alt="Serum" />
             </Link>
 
             {/* Promo Banner 2 */}
-            <Link to="/categories" className="group relative overflow-hidden rounded-2xl bg-sand p-8 text-ink shadow-xl transition-transform hover:-translate-y-1 border border-line">
+            <Link to="/categories" className="group relative overflow-hidden rounded-2xl bg-sand p-8 text-ink shadow-xl transition-transform md:hover:-translate-y-1 border border-line">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800')] opacity-20 mix-blend-overlay bg-cover bg-center" />
               <div className="absolute -bottom-10 -left-10 h-40 w-40 animate-pulse rounded-full bg-gold/20 blur-3xl" />
               <div className="relative z-10 flex h-full flex-col justify-center">
@@ -169,11 +169,11 @@ export default function Landing() {
                   <span className="text-gold-dark">OFF</span>
                 </h3>
                 <p className="mt-3 max-w-[200px] text-sm font-medium text-ink/70">Hair styling & spa equipment bundles.</p>
-                <div className="mt-6 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-ink/60 group-hover:text-ink transition-colors">
-                  View Bundles <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                <div className="mt-6 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-ink/60 md:group-hover:text-ink transition-colors">
+                  View Bundles <ArrowRight size={14} className="md:group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-              <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=400" className="absolute -bottom-4 -right-4 h-40 w-40 object-cover rounded-2xl border-4 border-white shadow-2xl transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3" alt="Equipment" />
+              <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=400" className="absolute -bottom-4 -right-4 h-40 w-40 object-cover rounded-2xl border-4 border-white shadow-2xl transition-transform duration-700 md:group-hover:scale-110 md:group-hover:rotate-3" alt="Equipment" />
             </Link>
 
           </div>
@@ -208,7 +208,7 @@ export default function Landing() {
                   muted
                   loop
                   playsInline
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 md:group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 z-10 text-porcelain">

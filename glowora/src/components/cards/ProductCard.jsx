@@ -33,7 +33,7 @@ export default function ProductCard({ product, index = 0 }) {
           <img
             src={product.img}
             alt={product.name}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out md:group-hover:scale-[1.06]"
             loading="lazy" decoding="async" />
           {/* Continuous Animated Video Overlay */}
           {(product.videoUrl || product.isAnimated) && (
@@ -43,7 +43,7 @@ export default function ProductCard({ product, index = 0 }) {
               muted
               loop
               playsInline
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 md:group-hover:scale-105"
             />
           )}
           <div className="absolute inset-x-0 top-0 flex items-start justify-between p-3">
@@ -62,7 +62,7 @@ export default function ProductCard({ product, index = 0 }) {
               toggleWishlist(product.id)
             }}
             aria-label="Toggle wishlist"
-            className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-porcelain/95 text-ink opacity-0 shadow-card backdrop-blur transition-all duration-300 group-hover:opacity-100"
+            className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-porcelain/95 text-ink opacity-0 shadow-card backdrop-blur transition-all duration-300 md:group-hover:opacity-100"
           >
             <Heart size={15} className={inWishlist ? 'fill-clay text-clay' : ''} />
           </button>
@@ -71,7 +71,7 @@ export default function ProductCard({ product, index = 0 }) {
               e.preventDefault()
               addToCart(product.id, product.moq || 1)
             }}
-            className="absolute inset-x-3 bottom-3 flex translate-y-14 items-center justify-center gap-2 rounded-full bg-ink py-2.5 text-xs font-medium text-porcelain opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 hover:bg-gold hover:text-ink"
+            className="absolute inset-x-3 bottom-3 flex translate-y-14 items-center justify-center gap-2 rounded-full bg-ink py-2.5 text-xs font-medium text-porcelain opacity-0 transition-all duration-300 md:group-hover:translate-y-0 md:group-hover:opacity-100 hover:bg-gold hover:text-ink"
           >
             <ShoppingBag size={13} /> Add MOQ {product.moq}
           </button>

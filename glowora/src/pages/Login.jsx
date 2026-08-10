@@ -62,7 +62,7 @@ export default function Login() {
       // profile fields — so we must fetch and send the idToken.
       const idToken = await result.user.getIdToken()
 
-      const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+      const apiBase = import.meta.env.VITE_API_URL || 'https://glowora.onrender.com/api'
       const res = await axios.post(`${apiBase}/auth/google`, { idToken })
 
       // Mirror what AuthContext's login()/register() do, so the rest of the
